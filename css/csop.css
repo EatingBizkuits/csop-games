@@ -1,0 +1,93 @@
+/* JS CSS Inputs */
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+/* JS CSS Inputs end */
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+.bg {
+    width: 100vw;
+    height: 100vh;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background-color: blue;
+    z-index: 2;
+}
+
+.course-container {
+    background-color: green;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 2;
+}
+
+.courses {
+    background-color: yellow;
+}
+
+.options {
+    /* background-color: cyan; */
+    height: 8vh;
+    width: 8vh;
+}
+
+.menu {
+    height: 30vh;
+    width: 30vh;
+    position: absolute;
+    background-color: orange;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    border-radius: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.landscape::before, .portrait::before {
+    content: "☰";
+    text-align: center;
+    color: white;
+    font-size: 10vh;
+    font-weight: bold;
+}
+
+.landscape {
+    margin: auto 2vh auto auto;
+}
+
+.landscape::before {
+    transform: rotate(90deg);
+    margin-left: 14.5vh;
+}
+
+.portrait {
+    height: 20vh;
+    width: 20vh;
+    margin: auto auto 1vh auto;
+    bottom: -9vh;
+}
+
+.portrait::before {
+    margin-bottom: 8vh;
+    font-size: 9vh;
+}
+
+.hiddend {
+    height: 0;
+    width: 0;
+}
