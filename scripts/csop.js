@@ -18,10 +18,10 @@ let tracker = [4, 4, 4, 4];
 let wordUsed = [];
 //randomiser
 
-const courseWords = [ ["Anonymization", "Algorithm", "AI", "Bayes Theorem", "Behavioural analytics", "Big Data", "Citizen Data Scientist", "Classification", "Clickstream analytics", "Clustering", "Data Governance", "Data Mining", "Data Set", "Data Scientist", "Decision Trees", "Dimension", "Deep Learning", "Machine Learning", "In-Memory Database", "Metadata", "Statistical Outlier", "Predictive Modelling", "Python", "Quantile", "R", "Random Forest", "Standard Deviation"], 
-                ["Cloud Computing", "Software", "Domain", "VPN", "Sessions","IP Address", "MAC Address", "Exploits", "Data Breach", "Operating Systems", "Firewall", "Malware", "Ransomware", "Virus", "Trojan", "Worm", "Botnet", "Spyware", "Server", "DDoS", "Phishing", "Encryption", "Pen-Testing", "Social Engineering", "Deepfake", "Forensics", "Cryptography", "Cookie"], 
-                ["Domain", "Software", "Cookies", "Python", "Web Development", "Cloud Computing", "Techno- preneurship", "Marketing", "Operating Systems", "Software Enginneering", "Frameworks", "Big Data", "Deep Learning", "Machine Learning", "Server", "Robotic Process Automation", "Gaming AI", "DevOps", "E-Commerce", "App Developer", "User Interface", "Networking", "User Experience", "Game Development"], 
-                ["Animation", "3D Modelling", "Maya", "Python", "Unity", "Web Development", "Augmented Reality", "Virtual Reality", "Mixed Reality", "Extended Reality", "Art", "Game Development", "User Experience", "Design", "Rendering", "User Interactions", "Sound Effects", "Video Editing", "Rigging", "Topology", "Gamification", "Social Media", "3D Printing", "Product Design", "User Interface", "Texturing", "UV unwrapping", "Meshes", "Environments Design", "Simulation", "Visual Effects"]]
+const courseWords = [ ["Anony- mization", "Algorithm", "AI", "Bayes Theorem", "Behavioural analytics", "Big Data", "Citizen Data Scientist", "Classification", "Clickstream analytics", "Clustering", "Data Governance", "Data Mining", "Data Set", "Data Scientist", "Decision Trees", "Dimension", "Deep Learning", "Machine Learning", "In-Memory Database", "Metadata", "Statistical Outlier", "Predictive Modelling", "Python", "Quantile", "R", "Random Forest", "Standard Deviation"], 
+                ["Cloud Computing", "Software", "Domain", "VPN", "Sessions","IP Address", "MAC Address", "Exploits", "Data Breach", "Operating Systems", "Firewall", "Malware", "Ransomware", "Virus", "Trojan", "Worm", "Botnet", "Spyware", "Server", "DDoS", "Phishing", "Encryption", "Pen-Testing", "Social Engineering", "Deepfake", "Forensics", "Crypto- graphy", "Cookie"], 
+                ["Domain", "Software", "Cookies", "Python", "Web Development", "Cloud Computing", "Techno- preneurship", "Marketing", "Operating Systems", "Software Engineering", "Frameworks", "Big Data", "Deep Learning", "Machine Learning", "Server", "Robotic Process Automation", "Gaming AI", "DevOps", "E-Commerce", "App Developer", "User Interface", "Networking", "User Experience", "Game Development"], 
+                ["Animation", "3D Modelling", "Maya", "Python", "Unity", "Web Development", "Augmented Reality", "Virtual Reality", "Mixed Reality", "Extended Reality", "Art", "Game Development", "User Experience", "Design", "Rendering", "User Interactions", "Sound Effects", "Video Editing", "Rigging", "Topology", "Gamification", "Social Media", "3D Printing", "Product Design", "User Interface", "Texturing", "UV unwrapping", "Meshes", "Environment Design", "Simulation", "Visual Effects"]]
 //Source(s): https://bernardmarr.com/data-science-terminology-26-key-definitions-everyone-should-understand/
 // 0 - DS, 1 - CSF, 2 - IT, 3 - IM
 
@@ -30,10 +30,19 @@ const courseWords = [ ["Anonymization", "Algorithm", "AI", "Bayes Theorem", "Beh
 //Deselect Course: Click on Course.
 
 $(document).ready(function() {
-    initGame();
+    $(".game-end").hide();
+    initSize();
     setInterval(function(){
         initSize();
     }, 500);
+
+    $(document).on('click', ".play", function(){
+        initGame();
+        $(".start").addClass("fadeOut");
+        setTimeout(function(){
+            $(".start").hide();
+        }, 800)
+    }) 
 
     $(document).on("click", ".box", function() {
         if ($(this).hasClass("clicked") || selectorLock) {
@@ -97,11 +106,37 @@ $(document).ready(function() {
     });
 
     $(document).on("click", ".submit", function() {
-        $(".bg").hide();
-        setTimeout(function() {
-            location.reload();
-        }, 500);
+        let finalCourse = $(this).html();
+        finalCourse = abbreviation2Word(finalCourse);
+        $(".game-end").show().addClass("fadeIn");
+        clearInterval(blinkingInterval);
+        blinkingInterval = "idle";
+        $(".submit").removeClass("submit");
+        $(".flash").removeClass("flash");
+        const final = $(".clicked");
+        const displayBox = $(".choice .show");
+        for (let i = 0; i < final.length; i++) {
+            $(displayBox[i]).html($(final[i]).html());
+            let text = gameResult($(final[i]).html())
+            let finalText = "";
+            let noSpacing = false;
+            for (let j = 0; j < text.length; j++) {
+                if (finalCourse == text[j]) {
+                    $(displayBox[i]).addClass("correct");
+                }
+                if (noSpacing) {
+                    finalText += ",<br>"
+                }
+                noSpacing = true;
+                finalText += text[j]
+            }
+            $(displayBox[i]).next().append(finalText);
+        }
     });
+
+    $(document).on("click", ".refresh", function() {
+        location.reload();
+    })
 })
 
 // Display & Structural Settings 
@@ -222,20 +257,18 @@ function randomiser() {
         }
         let chosen = courseWords[course]
         let word = Math.floor(Math.random() * chosen.length)
-        if (inArray(chosen[word])){
+        if (inArray(chosen[word], wordUsed)){
             continue;
         }
         wordUsed.push(chosen[word]);
-        console.log(wordUsed);
         tracker[course] += 1;
         return chosen[word];
     }
 }
 
-function inArray(word) {
-    for (let i = 0; i < wordUsed.length; i++) {
-        if (wordUsed[i] === word) {
-            console.log("repeated")
+function inArray(word, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === word) {
             return true;
             // if word is in array
         }
@@ -243,3 +276,44 @@ function inArray(word) {
     return false;
 }
 //Game Initialisation End
+
+// Game Result
+function gameResult(word) {
+    let relation = [];
+    let temp = [];
+    for (let c = 0; c < courseWords.length; c++) {
+        for (let d = 0; d < courseWords[c].length; d++) {
+            if (courseWords[c][d] == word) {
+                relation.push(c);
+            }
+        }
+    }
+    for (let i = 0; i < relation.length; i++) {
+        if (relation[i] == 0) {
+            temp.push("Data Science")
+        } else if (relation[i] == 1) {
+            temp.push("Cybersecurity and Digital Forensics")
+        } else if (relation[i] == 2) {
+            temp.push("Information Technology")
+        } else {
+            temp.push("Immersive Media")
+        }
+    }
+    console.log(temp)
+    return temp;
+}
+
+function abbreviation2Word(abbrv) {
+    if (abbrv == "IM") {
+        return "Immersive Media"
+    } else if (abbrv == "CSF") {
+        return "Cybersecurity and Digital Forensics"
+    } else if (abbrv == "DS") {
+        return "Data Science"
+    } else if (abbrv == "IT") {
+        return "Information Technology"
+    } else {
+        return false;
+    }
+}
+// Game Result End

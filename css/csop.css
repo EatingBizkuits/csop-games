@@ -31,6 +31,8 @@
     align-items: center;
     justify-content: center;
     color: black;
+    font-size: 1.2rem;
+    overflow: visible;
 }
 /* Course End */
 
@@ -58,10 +60,143 @@
     color: white;
     font-size: 1.5rem;
     text-align: center;
+    overflow: visible;
+}
+/* Options End*/
+
+/* Start menu */
+.start, .game-end {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.menu, .contents {
+    width: 70%;
+    height: 65%;
+    background-color: pink;
+    border-radius: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    flex-direction: column;
+}
 
-/* Options End*/
+h2.title {
+    margin-bottom: 2rem;
+    padding-bottom: 4rem;
+}
+.btn-container > * {
+    margin-bottom: 1.5rem;
+    border: 0.3rem solid rgb(88, 88, 88);
+    padding: 1.3rem;
+    border-radius: 2vh;
+    text-align: center;
+}
+/* Start menu End */
+
+/* EndGame Menu */
+.contents {
+    display: flex;
+    flex-direction: row;
+}
+
+.choice {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    margin: auto;
+}
+
+.show {
+    background-color: red;
+    color: white;
+    width: 10rem;
+    height: 10rem;
+    margin: 1em auto;
+    border-radius: 2vh;
+    font-size: 0.4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.refresh {
+    position: relative;
+    background-color: green;
+    width: 10em;
+    height: 4em;
+    bottom: 6em;
+    border-radius: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+.detail {
+    text-align: center;
+    font-size: 0.6em;
+    margin-top: 1.5em;
+}
+
+/* EndGame Menu End */
+
+/* animations */
+@keyframes leftSlide {
+    0% {
+        opacity: 0.2;
+        transform: translateX(-4em);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+/* animations end */
+
+/* CSS Animations */
+.leftSlide {
+    animation: leftSlide 2s forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 1.5s forwards;
+}
+
+.fadeIn {
+    animation: fadeIn 1.5s forwards;
+}
+/* CSS Animations End */
 
 /* JS CSS Inputs */
 .wrap {
@@ -71,6 +206,8 @@
 
 .clicked {
     background-color: pink;
+    color: black;
+    font-weight: bold;
 }
 
 .error::after {
@@ -111,5 +248,10 @@
     content: "Submit ||\00a0";
     color: white;
     display: block;
+}
+
+.correct {
+    background-color: green;
+    color: black;
 }
 /* JS CSS Inputs end */
