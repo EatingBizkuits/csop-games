@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Barlow:ital,wght@0,100;0,300;0,800;0,900;1,200&display=swap');
+
 /* JS CSS Inputs */
 .wrap {
     display: flex;
@@ -5,9 +7,13 @@
 }
 /* JS CSS Inputs end */
 
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     overflow: hidden;
+    font-family: 'Barlow', sans-serif;
+    user-select: none;
 }
 
 .bg {
