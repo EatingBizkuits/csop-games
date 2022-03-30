@@ -10,7 +10,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
     overflow: hidden;
     font-family: 'Barlow', sans-serif;
     user-select: none;

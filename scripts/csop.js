@@ -8,17 +8,19 @@ let courseHeight = 0;
 let courseOption = 0;
 
 $(document).ready(function() {
-    console.log("ready")
     setInterval(function(){
         initSize();
     }, 500);
+    $(document).on('dblclick', function(){
+        document.documentElement.requestFullScreen().catch(console.log);
+    });
+
 })
 
 function initSize() {
     if (detectSize()){   //checks if screenSize has changed
         callibrateSize();
         setSize();
-        options();
         console.log("resized")
     }; 
 }
@@ -66,10 +68,3 @@ function setSize() {
         $(".courses").width(courseOption).height(courseOption);
     }
 }
-
-function options() {
-    if (landscape) {
-        return $(".menu").removeClass("portrait").addClass("landscape");
-    }
-    $(".menu").removeClass("landscape").addClass("portrait");
-}   
