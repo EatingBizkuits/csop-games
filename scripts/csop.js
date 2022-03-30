@@ -50,14 +50,10 @@ function callibrateSize() {
 }
 
 function setSize() {
-    containerbox = boxwidth * 1.1
-    courseHeight = boxwidth * 0.35
-    courseOption = boxwidth * 0.23
-    if (landscape) {
-        containerbox = boxwidth * 0.90
-        courseHeight = boxwidth * 0.3
-        courseOption = boxwidth * 0.2
-    }
+    containerbox = boxwidth * 0.90
+    courseHeight = boxwidth * 0.3
+    courseOption = boxwidth * 0.2
+
     $(".container").width(containerbox).height(containerbox);
     if (landscape) {
         $(".course-container").width(courseHeight).height(containerbox).addClass("wrap");
