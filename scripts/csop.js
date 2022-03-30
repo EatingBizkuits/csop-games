@@ -1,7 +1,6 @@
 let boxwidth;
 let normal = [0, 0];
 let landscape = true;
-let timerSet = 500;
 let difference = 0;
 let containerbox = 0;
 let courseHeight = 0;
@@ -67,4 +66,5 @@ function setSize() {
         $(".course-container").width(containerbox).height(courseHeight).removeClass("wrap");
         $(".courses").width(courseOption).height(courseOption);
     }
+    $(".bg").width(window.innerWidth).height(window.innerHeight)
 }
