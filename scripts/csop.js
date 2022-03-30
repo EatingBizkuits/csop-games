@@ -1,21 +1,110 @@
+// sizing params start
 let boxwidth;
 let normal = [0, 0];
 let landscape = true;
 let difference = 0;
 let containerbox = 0;
 let courseHeight = 0;
+// sizing params end
 let courseOption = 0;
+let clicked = [];
+let selectorLock = true; 
+//false to allow .box selection disabled when .clicked is present (on/off switch)
+let courseSelected = false;
+//once Course is chosen, options are opened
+let blinkingInterval = "idle";
+// stores blinkingInterval (default | false)
+let tracker = [4, 4, 4, 4];
+let wordUsed = [];
+//randomiser
+
+const courseWords = [ ["Anonymization", "Algorithm", "AI", "Bayes Theorem", "Behavioural analytics", "Big Data", "Citizen Data Scientist", "Classification", "Clickstream analytics", "Clustering", "Data Governance", "Data Mining", "Data Set", "Data Scientist", "Decision Trees", "Dimension", "Deep Learning", "Machine Learning", "In-Memory Database", "Metadata", "Statistical Outlier", "Predictive Modelling", "Python", "Quantile", "R", "Random Forest", "Standard Deviation"], 
+                ["Cloud Computing", "Software", "Domain", "VPN", "Sessions","IP Address", "MAC Address", "Exploits", "Data Breach", "Operating Systems", "Firewall", "Malware", "Ransomware", "Virus", "Trojan", "Worm", "Botnet", "Spyware", "Server", "DDoS", "Phishing", "Encryption", "Pen-Testing", "Social Engineering", "Deepfake", "Forensics", "Cryptography", "Cookie"], 
+                ["Domain", "Software", "Cookies", "Python", "Web Development", "Cloud Computing", "Techno- preneurship", "Marketing", "Operating Systems", "Software Enginneering", "Frameworks", "Big Data", "Deep Learning", "Machine Learning", "Server", "Robotic Process Automation", "Gaming AI", "DevOps", "E-Commerce", "App Developer", "User Interface", "Networking", "User Experience", "Game Development"], 
+                ["Animation", "3D Modelling", "Maya", "Python", "Unity", "Web Development", "Augmented Reality", "Virtual Reality", "Mixed Reality", "Extended Reality", "Art", "Game Development", "User Experience", "Design", "Rendering", "User Interactions", "Sound Effects", "Video Editing", "Rigging", "Topology", "Gamification", "Social Media", "3D Printing", "Product Design", "User Interface", "Texturing", "UV unwrapping", "Meshes", "Environments Design", "Simulation", "Visual Effects"]]
+//Source(s): https://bernardmarr.com/data-science-terminology-26-key-definitions-everyone-should-understand/
+// 0 - DS, 1 - CSF, 2 - IT, 3 - IM
+
+
+//Gameplay: Choose Course, Pick 2 that resembles course, Confirm.
+//Deselect Course: Click on Course.
 
 $(document).ready(function() {
+    initGame();
     setInterval(function(){
         initSize();
     }, 500);
-    $(document).on('dblclick', function(){
-        document.documentElement.requestFullScreen().catch(console.log);
+
+    $(document).on("click", ".box", function() {
+        if ($(this).hasClass("clicked") || selectorLock) {
+            return
+        }
+        if (clicked.length < 2) {
+            $(this).addClass("clicked")
+            clickedRecord(this);
+            if (clicked.length >= 2) {
+                $(".activated").addClass("flash").addClass("submit");
+                blinkingInterval = setInterval(function(){
+                    $(".activated").addClass("flash"); //on
+                    window.setTimeout(function(){
+                        $(".activated").removeClass("flash");  //off
+                    }, 550);
+                }, 1500)
+            }
+        } else {
+            showError(this);
+        }
     });
 
+    $(document).on("click", ".box.clicked", function(){
+        selectorLock = true;
+        clicked = clickedDelete(this);
+        $(this).removeClass("clicked");
+        window.setTimeout(function(){
+            selectorLock = false;
+            if (clicked.length < 2) {
+                clearInterval(blinkingInterval);
+                blinkingInterval = "idle";
+                $(".submit").removeClass("submit");
+                $(".flash").removeClass("flash");
+            }
+        }, 200);
+    });
+
+    $(document).on("click", ".courses", function(){
+        if (courseSelected) {
+            //if course is locked, dont allow other selections
+            return
+        }
+        courseSelected = true;
+        $(this).addClass("activated");
+        $(".courses:not(.activated)").addClass("deactivated");
+        selectorLock = false;
+        $(".box.deactivated").removeClass("deactivated")
+    })
+
+    $(document).on("click", ".courses.activated", function(){
+        //choose another course
+        if (blinkingInterval === "idle" && courseSelected) {
+            $(this).removeClass("activated");
+            $(".courses.deactivated").removeClass("deactivated");
+            $(".clicked").removeClass("clicked");
+            clicked = [];
+            $(".box").addClass("deactivated");
+            courseSelected = false;
+            selectorLock = true;
+        }    
+    });
+
+    $(document).on("click", ".submit", function() {
+        $(".bg").hide();
+        setTimeout(function() {
+            location.reload();
+        }, 500);
+    });
 })
 
+// Display & Structural Settings 
 function initSize() {
     if (detectSize()){   //checks if screenSize has changed
         callibrateSize();
@@ -55,12 +144,102 @@ function setSize() {
     courseOption = boxwidth * 0.2
 
     $(".container").width(containerbox).height(containerbox);
+    $(".bg").width(window.innerWidth).height(window.innerHeight);
+    $(".box").width(containerbox * 0.23).height(containerbox * 0.23)
+    $(".row").height(containerbox);
     if (landscape) {
         $(".course-container").width(courseHeight).height(containerbox).addClass("wrap");
-        $(".courses").width(courseOption).height(courseOption);
+        $(".courses").width(courseOption).height(courseOption * 0.6);
     } else {
         $(".course-container").width(containerbox).height(courseHeight).removeClass("wrap");
-        $(".courses").width(courseOption).height(courseOption);
+        $(".courses").width(courseOption).height(courseOption * 0.6);
     }
-    $(".bg").width(window.innerWidth).height(window.innerHeight)
 }
+// Display & Structural Settings End
+
+// Handle Choices Interactions
+function clickedRecord(selected) {
+    for (let i = 0; i < clicked.length; i++) {
+        if (clicked[i] === selected) {
+            return
+        }
+    }
+    clicked.push(selected);
+}
+
+function clickedDelete(selected) {
+    let edited = [];
+    for (let i = 0; i <clicked.length; i++) {
+        if (clicked[i] === selected) {
+            // if the newly clicked has been selected before, 
+            //skip it, leaving it out of the updated array
+            continue;
+        }
+        edited.push(clicked[i]);
+    }
+    return edited;
+}
+// Handle Choices Interactions End
+
+// Handle Blinks
+function showError(selected) {
+    $(selected).addClass("error");  // on
+    window.setTimeout(function(){
+        $(selected).removeClass("error");  // off
+        window.setTimeout(function(){
+            $(selected).addClass("error");  // on
+            window.setTimeout(function(){
+                $(selected).removeClass("error");  //off
+            }, 75);
+        }, 75)
+    }, 75);
+}
+// Handle Blinks End
+
+// Game Initialisation
+function initGame() {
+    chooseWords();
+    initSize();
+}
+
+function chooseWords() {
+    tracker = [4, 4, 4, 4];
+    const boxes = $(".box");
+    for (let i = 0; i < boxes.length; i++) {
+        $(boxes[i]).html(randomiser())
+    }
+}
+
+function randomiser() {
+    // randomiser chooses Course
+    // 0 - DS, 1 - CSF, 2 - IT, 3 - IM
+    let run = true;
+    while (run) {
+        course = Math.floor(Math.random() * 4)
+        if (tracker[course] < 1) {
+            continue;
+            //repeat if course quota is filled
+        }
+        let chosen = courseWords[course]
+        let word = Math.floor(Math.random() * chosen.length)
+        if (inArray(chosen[word])){
+            continue;
+        }
+        wordUsed.push(chosen[word]);
+        console.log(wordUsed);
+        tracker[course] += 1;
+        return chosen[word];
+    }
+}
+
+function inArray(word) {
+    for (let i = 0; i < wordUsed.length; i++) {
+        if (wordUsed[i] === word) {
+            console.log("repeated")
+            return true;
+            // if word is in array
+        }
+    }
+    return false;
+}
+//Game Initialisation End

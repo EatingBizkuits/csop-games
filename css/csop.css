@@ -1,12 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Barlow:ital,wght@0,100;0,300;0,800;0,900;1,200&display=swap');
-
-/* JS CSS Inputs */
-.wrap {
-    display: flex;
-    flex-direction: column;
-}
-/* JS CSS Inputs end */
-
 * {
     margin: 0;
     padding: 0;
@@ -23,11 +15,7 @@
     justify-content: center;
 }
 
-.container {
-    background-color: blue;
-    z-index: 2;
-}
-
+/* Course */
 .course-container {
     background-color: green;
     display: flex;
@@ -38,4 +26,90 @@
 
 .courses {
     background-color: yellow;
+    border-radius: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
 }
+/* Course End */
+
+/* Options */
+.container {
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.box {
+    margin: auto;
+    background-color: purple;
+    border-radius: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+
+/* Options End*/
+
+/* JS CSS Inputs */
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.clicked {
+    background-color: pink;
+}
+
+.error::after {
+    display: block;
+    height: inherit;
+    content: "✖";
+    color: red;
+    font-size: 10vw;
+    text-align: center;
+    margin: auto;
+}
+
+.deactivated {
+    background-color: gray;
+    color: white;
+}
+
+.box.deactivated::after {
+    content: "unselectable";
+    font-size: 0.9rem;
+}
+
+.activated {
+    background-color: red;
+    color: white;
+}
+
+.activated::before {
+    content: "Deselect ||\00a0";
+    color: white;
+}
+
+.flash {
+    background-color: limegreen;
+}
+
+.submit::before{
+    content: "Submit ||\00a0";
+    color: white;
+    display: block;
+}
+/* JS CSS Inputs end */
