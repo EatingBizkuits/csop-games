@@ -9,7 +9,8 @@
 }
 
 .bg {
-    background-color: red;
+    background: url(../assets/background.jpg);
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,20 +18,24 @@
 
 /* Course */
 .course-container {
-    background-color: green;
+    /* background-color: green; */
     display: flex;
     justify-content: space-around;
     align-items: center;
     z-index: 2;
+    border: 0.15em solid black;
+    border-radius: 1em;
+    padding: 0.3em;
 }
 
 .courses {
-    background-color: yellow;
-    border-radius: 2vh;
+    background-color: green;
+    border-radius: 1em;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: white;
+    border: 0.15em solid black;
     font-size: 1.2rem;
     overflow: visible;
 }
@@ -38,10 +43,12 @@
 
 /* Options */
 .container {
-    background-color: blue;
+    /* background-color: rgb(233, 120, 255); */
     display: flex;
     flex-direction: column;
     z-index: 2;
+    border-radius: 1em;
+    padding: 0.5em;
 }
 
 .row {
@@ -51,8 +58,8 @@
 
 .box {
     margin: auto;
-    background-color: purple;
-    border-radius: 2.5vh;
+    background-color: green;
+    border-radius: 1em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -61,6 +68,18 @@
     font-size: 1.5rem;
     text-align: center;
     overflow: visible;
+    border: 0.15em solid black;
+    z-index: 2;
+}
+
+.cont-bg {
+    position: absolute;
+    background: url(../assets/orionlogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-20deg);
+    z-index: 1;
 }
 /* Options End*/
 
@@ -83,12 +102,13 @@
     width: 70%;
     height: 65%;
     background-color: pink;
-    border-radius: 5vh;
+    border-radius: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
     flex-direction: column;
+    border: 0.1em solid black;
 }
 
 h2.title {
@@ -99,7 +119,7 @@ h2.title {
     margin-bottom: 1.5rem;
     border: 0.3rem solid rgb(88, 88, 88);
     padding: 1.3rem;
-    border-radius: 2vh;
+    border-radius: 2em;
     text-align: center;
 }
 /* Start menu End */
@@ -108,31 +128,34 @@ h2.title {
 .contents {
     display: flex;
     flex-direction: row;
+    border: 0.1em solid black;
 }
 
 .choice {
     width: 100%;
     height: 100%;
-    background-color: blue;
+    background-color: pink;
     margin: auto;
 }
 
 .show {
-    background-color: red;
-    color: white;
-    width: 10rem;
+    background-color: rgb(173, 3, 3);
+    color: rgb(255, 250, 250);
+    width: 12rem;
     height: 10rem;
     margin: 1em auto;
-    border-radius: 2vh;
-    font-size: 0.4em;
+    font-size: 0.5em;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    border-radius: 0.8em;
+    border: 0.1em solid black;
+    overflow: visible;
 }
 .refresh {
     position: relative;
-    background-color: green;
+    background-color: rgb(214, 212, 212);
     width: 10em;
     height: 4em;
     bottom: 6em;
@@ -141,11 +164,13 @@ h2.title {
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
+    border: 0.1em solid black;
 }
 .detail {
     text-align: center;
     font-size: 0.6em;
     margin-top: 1.5em;
+    color: black;
 }
 
 /* EndGame Menu End */
@@ -205,9 +230,8 @@ h2.title {
 }
 
 .clicked {
-    background-color: pink;
-    color: black;
-    font-weight: bold;
+    background-color: rgb(96, 112, 253);
+    color: white;
 }
 
 .error::after {
@@ -223,6 +247,10 @@ h2.title {
 .deactivated {
     background-color: gray;
     color: white;
+}
+
+.box.deactivated {
+    background-color: rgba(128, 128, 128, 0.7);
 }
 
 .box.deactivated::after {
@@ -252,6 +280,46 @@ h2.title {
 
 .correct {
     background-color: green;
-    color: black;
+    color: white;
+}
+
+.background {
+    background-color: white;
+    border: 0.15em solid black;
+    z-index: 2;
 }
 /* JS CSS Inputs end */
+
+@media (max-width: 500px) {
+    * {
+        font-size: 2vw;
+    }
+
+    h2 {
+        font-size: 10vw;
+    }
+
+    .tutorial, .play {
+        font-size: 6vw;
+    }
+
+    .show, .detail {
+        font-size: 4vw;
+    }
+}
+
+@media (max-height: 450px) {
+    * {
+        font-size: 1vw;
+    }
+    h2 {
+        font-size: 4vw;
+    }
+    .tutorial, .play {
+        font-size: 3vw;
+    }
+
+    .show, .detail {
+        font-size: 2vw;
+    }
+}

@@ -18,7 +18,7 @@ let tracker = [4, 4, 4, 4];
 let wordUsed = [];
 //randomiser
 
-const courseWords = [ ["Anony- mization", "Algorithm", "AI", "Bayes Theorem", "Behavioural analytics", "Big Data", "Citizen Data Scientist", "Classification", "Clickstream analytics", "Clustering", "Data Governance", "Data Mining", "Data Set", "Data Scientist", "Decision Trees", "Dimension", "Deep Learning", "Machine Learning", "In-Memory Database", "Metadata", "Statistical Outlier", "Predictive Modelling", "Python", "Quantile", "R", "Random Forest", "Standard Deviation"], 
+const courseWords = [ ["Anony-<br>mization", "Algorithm", "AI", "Bayes Theorem", "Behavioural analytics", "Big Data", "Citizen Data Scientist", "Classification", "Clickstream analytics", "Clustering", "Data Governance", "Data Mining", "Data Set", "Data Scientist", "Decision Trees", "Dimension", "Deep Learning", "Machine Learning", "In-Memory Database", "Metadata", "Statistical Outlier", "Predictive Modelling", "Python", "Quantile", "R", "Random Forest", "Standard Deviation"], 
                 ["Cloud Computing", "Software", "Domain", "VPN", "Sessions","IP Address", "MAC Address", "Exploits", "Data Breach", "Operating Systems", "Firewall", "Malware", "Ransomware", "Virus", "Trojan", "Worm", "Botnet", "Spyware", "Server", "DDoS", "Phishing", "Encryption", "Pen-Testing", "Social Engineering", "Deepfake", "Forensics", "Crypto- graphy", "Cookie"], 
                 ["Domain", "Software", "Cookies", "Python", "Web Development", "Cloud Computing", "Techno- preneurship", "Marketing", "Operating Systems", "Software Engineering", "Frameworks", "Big Data", "Deep Learning", "Machine Learning", "Server", "Robotic Process Automation", "Gaming AI", "DevOps", "E-Commerce", "App Developer", "User Interface", "Networking", "User Experience", "Game Development"], 
                 ["Animation", "3D Modelling", "Maya", "Python", "Unity", "Web Development", "Augmented Reality", "Virtual Reality", "Mixed Reality", "Extended Reality", "Art", "Game Development", "User Experience", "Design", "Rendering", "User Interactions", "Sound Effects", "Video Editing", "Rigging", "Topology", "Gamification", "Social Media", "3D Printing", "Product Design", "User Interface", "Texturing", "UV unwrapping", "Meshes", "Environment Design", "Simulation", "Visual Effects"]]
@@ -30,7 +30,7 @@ const courseWords = [ ["Anony- mization", "Algorithm", "AI", "Bayes Theorem", "B
 //Deselect Course: Click on Course.
 
 $(document).ready(function() {
-    $(".game-end").hide();
+    $(".game-end, .box").hide();
     initSize();
     setInterval(function(){
         initSize();
@@ -90,6 +90,9 @@ $(document).ready(function() {
         $(".courses:not(.activated)").addClass("deactivated");
         selectorLock = false;
         $(".box.deactivated").removeClass("deactivated")
+        $(".cont-bg").hide()
+        $(".cont-bg, .box").addClass("fadeIn");
+        $(".box").show();
     })
 
     $(document).on("click", ".courses.activated", function(){
@@ -102,6 +105,8 @@ $(document).ready(function() {
             $(".box").addClass("deactivated");
             courseSelected = false;
             selectorLock = true;
+            $(".cont-bg").show();
+            $(".box").hide();
         }    
     });
 
@@ -178,15 +183,15 @@ function setSize() {
     courseHeight = boxwidth * 0.3
     courseOption = boxwidth * 0.2
 
-    $(".container").width(containerbox).height(containerbox);
+    $(".container, .cont-bg").width(containerbox).height(containerbox);
     $(".bg").width(window.innerWidth).height(window.innerHeight);
     $(".box").width(containerbox * 0.23).height(containerbox * 0.23)
     $(".row").height(containerbox);
     if (landscape) {
-        $(".course-container").width(courseHeight).height(containerbox).addClass("wrap");
+        $(".course-container").width(courseHeight * 0.8).height(containerbox).addClass("wrap");
         $(".courses").width(courseOption).height(courseOption * 0.6);
     } else {
-        $(".course-container").width(containerbox).height(courseHeight).removeClass("wrap");
+        $(".course-container").width(containerbox).height(courseHeight * 0.65).removeClass("wrap");
         $(".courses").width(courseOption).height(courseOption * 0.6);
     }
 }
