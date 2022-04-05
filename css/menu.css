@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Barlow:ital,wght@0,100;0,300;0,800;0,900;1,200&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    overflow: hidden;
+    font-family: 'Barlow', sans-serif;
+    user-select: none;
+}
+
+.bg {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../assets/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 70vw;
+    height: 60vh;
+    background-color: pink;
+    border-radius: 2em;
+    box-shadow: 1vw -1vw rgb(255, 74, 74);
+}
+
+.logo {
+    width: 60%;
+    height: 50%;
+    background-image: url(../assets/orionlogo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.btn-container {
+    width: inherit;
+    height: 40%;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    border-radius: 2em;
+    border: 0.15em solid black;
+    padding: 4% 8%;
+    background-color: whitesmoke;
+    cursor: pointer;
+}

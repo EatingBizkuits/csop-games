@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale = 1.0, minimum-scale = 1.0, user-scalable = 0">
+    <title>Document</title>
+    <script rel="stylesheet" type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/csoptwo.css">
+</head>
+<body>
+    <div class="bg">   
+        <div class="overlay"></div>
+        <!-- Hash -->
+        <div class="container back">
+            <div class="hash hide"></div>
+            <div class="hash hide"></div>
+        </div>
+        <div class="container back rotate">
+            <div class="hash hide"></div>
+            <div class="hash hide"></div>
+        </div>
+        <!-- Hash End -->
+        <div class="container">
+            <!-- Clickable -->
+            <div class="row">
+                <div class="box r1 d1 c1"></div>
+                <div class="box r1 c2"></div>
+                <div class="box r1 c3 d2"></div>
+            </div>
+            <div class="row">
+                <div class="box r2 c1"></div>
+                <div class="box r2 d1 c2 d2"></div>
+                <div class="box r2 c3"></div>
+            </div>
+            <div class="row">
+                <div class="box r3 c1 d2"></div>
+                <div class="box r3 c2"></div>
+                <div class="box r3 d1 c3"></div>
+            </div>
+            <!-- Clickable End -->
+            <!-- Final Display (Win/Lose) -->
+            <div class="play-container">
+                <div class="line-container">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>    
+            </div>
+            <!-- Final Display (Win/Lose) End -->
+        </div>
+        <!-- wheel -->
+        <div class="randomiser">
+            <div class="wheel">
+                <div class="ORION"></div>
+                <div class="participant"></div>
+            </div>
+            <div class="arrow"></div>
+            <div class="arrow smaller"></div>
+            <div class="dot cursor"></div>
+        </div>
+        <!-- wheel end -->
+    </div>
+    <div class="endbg">
+        <div class="endMenu">
+            <div class="logo"></div>
+            <h2 class="winnertext">YOU WIN</h2>
+            <div class="btn restart">Show Me to the GM!</div>
+        </div>
+    </div>
+</body>
+<script rel="stylesheet" type="text/javascript" src="./scripts/csoptwo.js"></script>
+</html>

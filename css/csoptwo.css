@@ -1,0 +1,361 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Barlow:ital,wght@0,100;0,300;0,800;0,900;1,200&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+    overflow: hidden;
+    font-family: 'Barlow', sans-serif;
+    user-select: none;
+}
+
+.body {
+    height: 100%;
+}
+
+.bg {
+    background: url(../assets/background.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+}
+
+.container { 
+    /* background-color: green;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.box {
+    /* background-color: rgba(128, 0, 128, 0.274); */
+    z-index: 4;
+}
+
+.hash {
+    background-color: black;
+    width: 3.5%;
+    height: inherit;
+}
+
+.back {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    z-index: 2;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+
+/* line settings */
+.line-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+}
+
+.finish {
+    z-index: 5;
+}
+
+.finish > * {
+    background-color: red;
+    animation: up2Down 1s forwards;
+    float: right;
+    transform: rotate(0);
+}
+
+.win1 .line.center {
+    transform: rotate(-45deg);
+}
+/* d1 */
+
+.win2 .line.center {
+    transform: rotate(45deg);
+}
+/* d2 */
+
+.win3, .win4, .win5 {
+    transform: rotate(90deg);
+}
+/* r1 */
+
+.win1 .line.top, .win1 .line.bottom, .win2 .line.top, .win2 .line.bottom, .win3 .line.center, .win3 .line.bottom, .win4 .line.top, .win4 .line.bottom, 
+.win5 .line.top, .win5 .line.center, .win6 .line.bottom, .win6 .line.center, .win7 .line.top, .win7 .line.bottom, .win8 .line.top, .win8 .line.center {
+    background-color: transparent;
+}
+
+/* line settings end */
+
+/* wheel */
+.randomiser {
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0; 
+    height: 0; 
+    border-left: 3vw solid transparent;
+    border-right: 3vw solid transparent;
+    border-top: 6vw solid rgb(39, 29, 29);
+    z-index: 7;
+}
+
+.smaller {
+    border-left: 2.5vw solid transparent;
+    border-right: 2.5vw solid transparent;
+    border-top: 5vw solid rgb(2, 90, 255);
+}
+
+.wheel {
+    width: 95%;
+    height: 95%;
+    background-color: purple;
+    transform: rotate(-40deg);
+    border: 0.5em solid black;
+    border-radius: 50em;
+}
+
+.ORION {
+    width: inherit;
+    height: 50%;
+    background: url(../assets/orionlogo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 65%;
+    filter: invert();
+}
+
+.participant {
+    background-color: white;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(180deg);
+}
+
+.participant::after {
+    content: "YOU";
+    color: black;
+    /* font-size: 11em; */
+    font-weight: 800;
+    letter-spacing: 0.05em;
+}
+
+.dot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: solid black 0.7em;
+    width: 20%;
+    height: 20%;
+    border-radius: 50em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(../assets/background.jpg);
+    background-size: cover;
+}
+
+.dot::after {
+    content: "Start ▶️";
+    color: black;
+    font-weight: bold;
+}
+
+/* wheel end */
+
+/* menu */
+.endbg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 8;
+    background-color: rgba(54, 54, 54, 0.575);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.endMenu {
+    background-color: pink;
+    width: 60vw;
+    height: 50vh;
+    border-radius: 4.5em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.endMenu > * {
+    padding: 3%;
+}
+
+.btn.restart {
+    border: 0.3rem solid rgb(88, 88, 88);
+    padding: 1.3rem;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vh;
+    height: 5vh;
+    font-weight: bold;
+    color: rgb(88, 88, 88);
+    z-index: 9;
+}
+
+.logo {
+    background-image: url("../assets/orionlogo.png");
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 50%;
+}
+
+.winnertext {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 2.5em; */
+}
+
+/* menu end */
+
+/* ORION */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+} 
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+} 
+
+@keyframes up2Down{
+    0% {
+        height: 0;
+    }
+    
+    100% {
+        height: 95%;
+    }
+}
+
+/* animations */
+.fadeOut {
+    animation: fadeOut 1.4s forwards;
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s forwards;
+}
+
+.up2Down {
+    animation: up2Down 1s forwards;
+    float: down;
+}
+/* animations end */
+
+/* Js CSS calls */
+.orion {
+    background-color: rgba(128, 0, 128, 0.247);
+    animation: fadeIn 0.5s forwards;
+}
+/* ORION's turn ended */
+
+.player {
+    /* background-color: rgba(0, 128, 0, 0.247); */
+    animation: fadeIn 0.5s forwards;
+}
+/* Player's turn ended */
+
+.cursor {
+    cursor: pointer;
+}
+
+.clickedone {
+    background-image: url("../assets/piece1.png");
+    transform: rotate(35deg);
+}
+
+.clickedtwo {
+    background-image: url("../assets/piece2.png");
+}
+
+.clickedone, .clickedtwo{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+    filter: invert();
+    margin-top: 1.5vw;
+}
+
+.clickedthree::after{
+    content:"❌";
+    /* font-size: 10em; */
+    text-align: center;
+    filter: invert(0%) sepia(100%) saturate(7458%) hue-rotate(67deg) brightness(0%) contrast(109%);
+}
+
+.hide {
+    background-color: transparent;
+}
+
+/* Js CSS calls end*/
