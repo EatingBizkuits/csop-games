@@ -344,7 +344,6 @@
     background-position: center;
     background-size: 90%;
     filter: invert();
-    margin: -10px 0 0 -10px;
 }
 
 .clickedthree::after{
