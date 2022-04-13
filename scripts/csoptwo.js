@@ -168,20 +168,13 @@ function pickPlayer () {
     // player chosen
     console.log(choice)
 
-    let angleSpin = randomiser(180) + revolutions;
-    if (!ORION) {
-        angleSpin += 180
-    }
-    // spins specified
-    
-    
+    let value = randomiser(180)
 
-    if (angleSpin%360 == 90) {
-        angleSpin += 1
-    } else if (angleSpin%360 == 270) {
-        angleSpin -= 1
-    }
+    console.log(value)
 
+    let angleSpin = value + revolutions - 320;
+
+    console.log(angleSpin, ORION)
     return angleSpin
 }
 
