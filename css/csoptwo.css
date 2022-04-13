@@ -344,7 +344,7 @@
     background-position: center;
     background-size: 90%;
     filter: invert();
-    margin-top: 1.5vw;
+    margin: -30px 0 0 -30px;
 }
 
 .clickedthree::after{
@@ -352,6 +352,7 @@
     /* font-size: 10em; */
     text-align: center;
     filter: invert(0%) sepia(100%) saturate(7458%) hue-rotate(67deg) brightness(0%) contrast(109%);
+    margin-left: 30px;
 }
 
 .hide {
