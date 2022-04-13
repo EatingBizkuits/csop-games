@@ -98,6 +98,12 @@
     align-items: center;
 }
 
+.subtitle {
+    margin-bottom: 2rem;
+    padding-bottom: 4rem;
+    font-size: 50%;
+}
+
 .menu, .contents {
     width: 70%;
     height: 65%;
@@ -113,7 +119,6 @@
 
 h2.title {
     margin-bottom: 2rem;
-    padding-bottom: 4rem;
 }
 
 .btn-container > * {
